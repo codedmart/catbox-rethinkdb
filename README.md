@@ -3,7 +3,7 @@ catbox-rethinkdb
 
 RethinkDB adapter for catbox
 
-still a WIP
+still only about 87% test coverage right now.
 
 ## Options
 
@@ -11,6 +11,7 @@ still a WIP
 - `port` - the RethinkDB server port or unix domain socket path. Defaults to `28015`.
 - `db` - the RethinkDB database. Defaults to `catbox`
 - `table` - The RethinkDB table under the db to store. Defaults to `catbox`
+- `flushInterval` - Since RethinkDB does not have ttl yet this sets how often to flush expiredAt records. Defaults to `60000`
 
 ## Tests
 
