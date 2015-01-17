@@ -630,15 +630,11 @@ describe('RethinkDB', function () {
             var client = new Catbox.Client(RethinkDB);
             client.start(function (err) {
 
-                var key = { id: 'x', segment: 'test' };
-                client.set(key, '123', 500, function (err) {
+                var key = { id: 'Id', segment: 'some' };
+                client.drop(key, function (err, result) {
 
-                    expect(err).to.not.exist();
-                    client.drop(key, function (err, result) {
-
-                        expect(err).to.equal(null);
-                        done();
-                    });
+                    expect(err).to.equal(null);
+                    done();
                 });
             });
         });
