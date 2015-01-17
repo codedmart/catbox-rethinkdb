@@ -1,13 +1,15 @@
-catbox-redis
+catbox-rethinkdb
 ============
 
 RethinkDB adapter for catbox
 
+still a WIP
+
 ## Options
 
-- `host` - the Redis server hostname. Defaults to `'127.0.0.1'`.
-- `port` - the Redis server port or unix domain socket path. Defaults to `28015`.
-- `db` - the Redis database. Defaults to `catbox`
+- `host` - the RethinkDB server hostname. Defaults to `'127.0.0.1'`.
+- `port` - the RethinkDB server port or unix domain socket path. Defaults to `28015`.
+- `db` - the RethinkDB database. Defaults to `catbox`
 - `table` - The RethinkDB table under the db to store. Defaults to `catbox`
 
 ## Tests
