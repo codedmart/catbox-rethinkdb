@@ -1,6 +1,8 @@
 catbox-rethinkdb
 ============
 
+TODO: connection pooling
+
 RethinkDB adapter for catbox
 
 still only about 87% test coverage right now.
