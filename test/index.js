@@ -142,7 +142,7 @@ describe('RethinkDB', function () {
             value.b = value;
             client.set(key, value, 10, function (err) {
 
-                expect(err.message).to.equal('RqlDriverError: Nesting depth limit exceeded');
+                expect(err.message).to.equal('RangeError: Maximum call stack size exceeded');
                 done();
             });
         });
