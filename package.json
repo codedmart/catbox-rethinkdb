@@ -1,7 +1,7 @@
 {
   "name": "catbox-rethinkdb",
   "description": "RethinkDB adapter for catbox",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Brandon Martin <brandon@codedmart.com>",
   "main": "index.js",
   "homepage": "https://github.com/codedmart/catbox-rethinkdb",
