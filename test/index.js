@@ -3,7 +3,6 @@
 var Code = require('code');
 var Lab = require('lab');
 var Catbox = require('catbox');
-var R = require('rethinkdb');
 var RethinkDB = require('..');
 
 
@@ -120,7 +119,6 @@ describe('RethinkDB', function () {
 
             var key = { id: 'x', segment: 'test' };
             client.set(key, '123', 500, function (err) {
-
                 expect(err).to.not.exist();
                 client.get(key, function (err, result) {
 
@@ -378,7 +376,7 @@ describe('RethinkDB', function () {
 
     describe('#start', function () {
 
-        it('sets client to when the connection succeeds', function (done) {
+        it('sets started to true', function (done) {
 
             var options = {
                 host: '127.0.0.1',
@@ -388,34 +386,12 @@ describe('RethinkDB', function () {
             var rethinkdb = new RethinkDB(options);
 
             rethinkdb.start(function (err) {
-
                 expect(err).to.not.exist();
-                expect(rethinkdb.client).to.exist();
+                expect(rethinkdb.started).to.equal(true);
                 done();
             });
         });
 
-        it('reuses the client when a connection is already started', function (done) {
-
-            var options = {
-                host: '127.0.0.1',
-                port: 28015
-            };
-
-            var rethinkdb = new RethinkDB(options);
-
-            rethinkdb.start(function (err) {
-
-                expect(err).to.not.exist();
-                var client = rethinkdb.client;
-
-                rethinkdb.start(function () {
-
-                    expect(client).to.equal(rethinkdb.client);
-                    done();
-                });
-            });
-        });
 
         it('returns an error when connection fails', function (done) {
 
@@ -430,7 +406,7 @@ describe('RethinkDB', function () {
 
                 expect(err).to.exist();
                 expect(err).to.be.instanceOf(Error);
-                expect(rethinkdb.client).to.not.exist();
+                expect(rethinkdb.started).to.equal(false);
                 done();
             });
         });
@@ -654,9 +630,11 @@ describe('RethinkDB', function () {
 
             rethinkdb.start(function () {
 
-                expect(rethinkdb.client).to.exist();
+                expect(rethinkdb.started).to.equal(true);
+                expect(rethinkdb.isConnected()).to.equal(true);
                 rethinkdb.stop();
-                expect(rethinkdb.client).to.not.exist();
+                expect(rethinkdb.started).to.equal(false);
+                expect(rethinkdb.isConnected()).to.equal(false);
                 done();
             });
         });
